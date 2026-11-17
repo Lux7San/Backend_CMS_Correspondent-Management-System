@@ -7,21 +7,21 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.bigIncrements('user_profile_id')
       table
-        .bigInteger('id_user')
+        .bigInteger('user_id')
         .unsigned()
         .notNullable()
         .references('user_id')
         .inTable('users')
         .onDelete('CASCADE')
       table
-        .bigInteger('id_division')
+        .bigInteger('division_id')
         .unsigned()
         .notNullable()
         .references('division_id')
         .inTable('mst_divisions')
         .onDelete('CASCADE')
       table
-        .bigInteger('id_division_position')
+        .bigInteger('division_position_id')
         .unsigned()
         .notNullable()
         .references('division_position_id')

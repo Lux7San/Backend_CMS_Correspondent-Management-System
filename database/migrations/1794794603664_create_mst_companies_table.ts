@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.string('npwp', 255).nullable().unique()
       table.string('nib', 255).nullable().unique()
       table.string('email', 255).nullable()
-      table.string('no_hp', 20).nullable()
+      table.string('phone_number', 20).nullable()
       table.string('flag_active', 255).notNullable().defaultTo('Y')
       table.timestamp('created_at', { useTz: false, precision: 0 }).nullable()
       table.timestamp('updated_at', { useTz: false, precision: 0 }).nullable()

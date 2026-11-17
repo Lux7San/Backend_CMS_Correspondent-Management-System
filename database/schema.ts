@@ -33,7 +33,7 @@ export class AuthAccessTokenSchema extends BaseModel {
 }
 
 export class MstCompanySchema extends BaseModel {
-  static $columns = ['companyAddress', 'companyCode', 'companyId', 'companyName', 'createdAt', 'email', 'flagActive', 'nib', 'noHp', 'npwp', 'updatedAt'] as const
+  static $columns = ['companyAddress', 'companyCode', 'companyId', 'companyName', 'createdAt', 'email', 'flagActive', 'nib', 'npwp', 'phoneNumber', 'updatedAt'] as const
   $columns = MstCompanySchema.$columns
   @column()
   declare companyAddress: string | null
@@ -52,9 +52,9 @@ export class MstCompanySchema extends BaseModel {
   @column()
   declare nib: string | null
   @column()
-  declare noHp: string | null
-  @column()
   declare npwp: string | null
+  @column()
+  declare phoneNumber: string | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }
@@ -137,20 +137,18 @@ export class MstUserCompanySchema extends BaseModel {
 }
 
 export class MstUserProfileSchema extends BaseModel {
-  static $columns = ['createdAt', 'fullName', 'gender', 'idDivision', 'idDivisionPosition', 'idUser', 'noHp', 'photoProfile', 'signature', 'telegram', 'updatedAt', 'userProfileId'] as const
+  static $columns = ['createdAt', 'divisionId', 'divisionPositionId', 'fullName', 'gender', 'noHp', 'photoProfile', 'signature', 'telegram', 'updatedAt', 'userId', 'userProfileId'] as const
   $columns = MstUserProfileSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
   @column()
+  declare divisionId: bigint | number
+  @column()
+  declare divisionPositionId: bigint | number
+  @column()
   declare fullName: string | null
   @column()
   declare gender: string | null
-  @column()
-  declare idDivision: bigint | number
-  @column()
-  declare idDivisionPosition: bigint | number
-  @column()
-  declare idUser: bigint | number
   @column()
   declare noHp: string | null
   @column()
@@ -161,12 +159,14 @@ export class MstUserProfileSchema extends BaseModel {
   declare telegram: string | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+  @column()
+  declare userId: bigint | number
   @column({ isPrimary: true })
   declare userProfileId: bigint | number
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'emailVerifiedAt', 'flagActive', 'idRole', 'password', 'rememberToken', 'updatedAt', 'userId', 'username'] as const
+  static $columns = ['createdAt', 'email', 'emailVerifiedAt', 'flagActive', 'password', 'rememberToken', 'roleId', 'updatedAt', 'userId', 'username'] as const
   $columns = UserSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
@@ -176,12 +176,12 @@ export class UserSchema extends BaseModel {
   declare emailVerifiedAt: DateTime | null
   @column()
   declare flagActive: string
-  @column()
-  declare idRole: bigint | number
   @column({ serializeAs: null })
   declare password: string
   @column()
   declare rememberToken: string | null
+  @column()
+  declare roleId: bigint | number
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
   @column({ isPrimary: true })

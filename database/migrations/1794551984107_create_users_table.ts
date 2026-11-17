@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.timestamp('email_verified_at', { useTz: false, precision: 0 }).nullable()
       table.string('password', 255).notNullable()
       table
-        .bigInteger('id_role')
+        .bigInteger('role_id')
         .unsigned()
         .notNullable()
         .references('role_id')
